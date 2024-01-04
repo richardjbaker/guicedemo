@@ -1,10 +1,12 @@
 package org.example;
 
 import jakarta.inject.Singleton;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 @Singleton
 public class UserService {
 
@@ -12,10 +14,6 @@ public class UserService {
 
     public void addUser(String name) {
         users.add(name);
-    }
-
-    public List<String> getUsers() {
-        return users;
     }
 
     public boolean exists(String user) {

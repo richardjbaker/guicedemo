@@ -1,15 +1,18 @@
 package org.example;
 
 import com.google.inject.Inject;
-import org.checkerframework.checker.index.qual.IndexFor;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class SnackService {
 
-    private List<String> snacks = new ArrayList<>();
-    private UserService userService;
+    @Getter
+    private final List<String> snacks = new ArrayList<>();
+    private final UserService userService;
 
     @Inject
     public SnackService(UserService userService) {
@@ -22,9 +25,9 @@ public class SnackService {
 
     public void buy(String snackName, String user) {
         if (userService.exists(user)) {
-            System.out.printf("%s bought %s%n", user, snackName);
+            log.info("{} bought {}", user, snackName);
         } else {
-            System.out.printf("%s is not registered%n", user);
+            log.info("{} is not registered", user);
         }
     }
 }
